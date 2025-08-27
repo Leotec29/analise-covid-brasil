@@ -79,10 +79,11 @@ print(mortes_por_cidade.head(10))
 
 # Gráfico mortes
 plt.figure(figsize=(12,6))
-sns.barplot(x=mortes_por_cidade.head(10).values, y=mortes_por_cidade.head(10).index, palette="Reds_r")
-plt.title("Top 10 cidades por mortes COVID")
+sns.barplot(x=mortes_por_cidade.head(10).values, y=mortes_por_cidade.head(10).index, palette="flare")
+plt.title("Top 10 cidades por mortes COVID", fontsize=14)
 plt.xlabel("Número de mortes")
 plt.ylabel("Cidade")
+plt.tight_layout()
 plt.show()
 
 # 2️⃣ População estimada antes e depois dos casos para todas as cidades
@@ -99,12 +100,13 @@ print(f"Total de linhas após dropna: {len(df_mysql[['city', 'estimated_populati
 # Gráfico população vs casos (Top 10)
 top10_pop = populacao.sort_values('estimated_population_2019', ascending=False).head(10)
 plt.figure(figsize=(12,6))
-sns.barplot(x=top10_pop['estimated_population_2019'], y=top10_pop.index, palette="Blues_r", label="População")
-sns.barplot(x=top10_pop['pop_apos_casos'], y=top10_pop.index, palette="Greens_r", label="População após casos")
-plt.title("Top 10 cidades: População antes e depois dos casos")
+sns.barplot(x=top10_pop['estimated_population_2019'], y=top10_pop.index, palette="crest", label="População Estimada")
+sns.barplot(x=top10_pop['pop_apos_casos'], y=top10_pop.index, palette="light:#5A9", label="População Após Casos")
+plt.title("Top 10 cidades: População antes e depois dos casos", fontsize=14)
 plt.xlabel("População")
 plt.ylabel("Cidade")
 plt.legend()
+plt.tight_layout()
 plt.show()
 
 # 3️⃣ Cidade com maior quantidade de casos
@@ -120,8 +122,9 @@ print(f"🏘 Cidade com menor quantidade de casos: {menor_cidade} ({quant_menor}
 
 # Gráfico maior e menor cidade em casos
 plt.figure(figsize=(8,4))
-sns.barplot(x=[quant_maior, quant_menor], y=[maior_cidade, menor_cidade], palette=["green","orange"])
-plt.title("Cidade com maior e menor quantidade de casos")
+sns.barplot(x=[quant_maior, quant_menor], y=[maior_cidade, menor_cidade], palette=sns.color_palette("ch:s=-.2,r=.6", n_colors=2))
+plt.title("Cidade com maior e menor número de casos confirmados", fontsize=14)
 plt.xlabel("Número de casos")
 plt.ylabel("Cidade")
+plt.tight_layout()
 plt.show()
